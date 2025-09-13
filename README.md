@@ -1,4 +1,3 @@
-# Initial-Data-Transformation-Script
 import pandas as pd
 import numpy as np
 
@@ -19,10 +18,14 @@ def transform_data(file_path, output_path):
     # Handle missing values by filling them with a placeholder
     df.fillna('N/A', inplace=True)
     
-    # Standardize date formats in a column named 'date'
+    # Convert 'date' column to datetime, handling various formats
     if 'date' in df.columns:
         df['date'] = pd.to_datetime(df['date'], errors='coerce')
         df.dropna(subset=['date'], inplace=True)
+    
+    # Add a new step: Remove duplicate rows to ensure data integrity
+    df.drop_duplicates(inplace=True)
+    print("Duplicate rows removed.")
     
     # Save the cleaned data
     df.to_csv(output_path, index=False)
