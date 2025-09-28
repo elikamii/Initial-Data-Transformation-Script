@@ -7,8 +7,7 @@ def transform_data(file_path, output_path):
 
     Args:
         file_path (str): Path to the raw CSV file.
-        output_path (str): Path to save the cleaned CSV file.
-    """
+        output_path (str): Path to sav
     try:
         df = pd.read_csv(file_path)
     except FileNotFoundError:
